@@ -1,0 +1,12 @@
+applications:
+- path: .
+  memory: 128M
+  instances: 1
+  domain: mybluemix.net
+  name: Watson-NLU-Demo
+  host: Watson-NLU-Demo
+  disk_quota: 1024M
+  command: python webstart.py
+  buildpack: python_buildpack
+  services:
+  - NLU-Service-Name

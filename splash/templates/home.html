@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Noteable | NLU Demo</title>
+  <link rel="stylesheet" href="static/css/home.css">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+  <script src="static/js/index.js"></script>
+  <script src="http://malsup.github.com/jquery.form.js"></script> 
+</head>
+<body>
+
+<form id="NLU-text" action="/analyze" method="POST">
+  <div class="logo-wrapper">
+    <img src="static/images/logo-white.png">
+  </div>
+  <h2>Natural Language Understanding</h2>
+  <h3>Categories and Concepts Analysis</h3>
+  <div class="tab">
+    <a href="javascript:void(0)" class="tablinks" onclick="inputSelector(event, 'Text')">Text</a>
+    <a href="javascript:void(0)" class="tablinks" onclick="inputSelector(event, 'URL')">URL</a>
+  </div>
+<div id="Text" class="tabcontent">
+  <h3>Text</h3>
+    <div id="textarea-container">
+      <textarea name="text-analysis" id="textarea" class="slide-down" placeholder="Paste your text here.">
+  The Pythagorean Theorem
+
+  In a right triangle, the square of the hypotenuse is equal to the sum of
+  the squares of the legs.
+
+  c²= a²+ b²
+
+  Theorem:
+
+  If the square of one side of a triangle is equal to the sum of the
+  squares of the other sides then the triangle is a right triangle.
+
+  Theorem:
+
+  If the square of the longest side of a triangle is greater than the sum
+  of the squares of the other two sides then the triangle is an obtuse
+  triangle.
+
+  Theorem:
+
+  If the square of the longest side of a triangle is less than the sum of
+  the squares of the other two sides then the triangle is an acute
+  triangle.
+      </textarea>
+    </div>
+</div>
+
+<div id="URL" class="tabcontent">
+  <h3>URL</h3>
+  <div id="textarea-container">
+        <textarea name="url-analysis" id="urlarea" class="slide-down" placeholder="Paste your url here.">
+          https://en.wikipedia.org/wiki/Pythagorean_theorem
+        </textarea>
+      </div>
+</div>
+
+  <div>
+    <div>
+      <button class="entypo-right-thin slide-down" name="button" id="button" type="submit" value="text-analysis">  Run Analysis</button>
+    </div>
+  </div> 
+</div>
+</form>
+
+<div id="response">
+  <div id="categories">
+
+  </div>
+
+  <div id="concepts">
+
+  </div>
+</div>
+<script>
+function inputSelector(event, inputName) {
+    // Declare all variables
+    var i, tabcontent, tablinks;
+
+    // Get all elements with class="tabcontent" and hide them
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+      tabcontent[i].style.display = "none";
+    }
+
+    // Get all elements with class="tablinks" and remove the class "active"
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+
+    // Show the current tab, and add an "active" class to the link that opened the tab
+    document.getElementById(inputName).style.display = "block";
+    document.getElementById("button").value = inputName
+    event.currentTarget.className += " active";
+}
+</script>
+
+</body>
+</html>
